@@ -42,3 +42,17 @@
    delete y;
    int *a = new int[10];
    delete []a;
+
+1.4.3 C++ 类
+==================
+###   建立一个类的对象类似于定义C语言的变量，有如下两种：
+      1. 直接定义类的实例
+         ClassName  tempClass;
+      2. 使用new
+         ClassName * tempClass = new ClassName;
+         delete tempClass;   // 注意要释放new申请的变量
+         
+         
+         
+
+
