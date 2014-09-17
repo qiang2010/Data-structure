@@ -51,8 +51,26 @@
       2. 使用new
          ClassName * tempClass = new ClassName;
          delete tempClass;   // 注意要释放new申请的变量
-         
-         
-         
+###   1.4.3.1 操作符重载
+      operate+
+      输入输出流的重载等。
+      
+###   1.4.3.2 友元函数
+      一个类的private成员仅仅对该类的成员函数是可见的。有些应用中要求对将这些private成员的访问权限授予其他的类或者函数，这时候可将这些类或者函数定义成友元的形式（friend）。
+      class Y;
+      class X{
+         friend Y;
+         ...
+      }
+      class Y{
+      
+        ...
+      }
+      类Y中所有函数都是X的友元，因此他们都能存取X的私有成员。
+      
+###  C++ 还有继承、多态、虚函数、模板等概念这里就不在一一介绍。
+      
+      
+   
 
 
