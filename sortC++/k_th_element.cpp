@@ -5,6 +5,8 @@
  *  还有一种方法就是 利用快排中的分划思想，一次分划，元素v就可以到达自己的位置j
  *  如果k<j ，那么要找的元素就在数组的1到j之间；
  *  如果k>j ，那么要找的元素就在数组的 j+1到最后之间，并且是A[j+1,..,n]的第j-k个元素
+
+ * 需要注意的事情，在代码中较为详细的说明
  *
 */
 #include <iostream>
@@ -23,19 +25,18 @@ int main(){
 
 }
 template<class T> int k_th(T target[],int b,int e,int k){
-  k;
   if(k>e|| k<b) return -1;
   int p ;
   while( b <= e){
     print_list(target,8);
-    p = part(target,b,e);  // p是在数组中的坐标，不是相对位置
-    int dis = p - b+1;
+    p = part(target,b,e);   // p是在数组中的坐标，不是相对位置
+    int dis = p - b+1;      // 待查找数组的起始位b和e，k是相对于b的位置
     print_list(target,8);
     if(k == dis ) return p;
     if(k<dis){
       e = p-1;
     }else{
-       b = p+1; k = k-p;
+       b = p+1; k = k-p;  //
    }
   }
 }
