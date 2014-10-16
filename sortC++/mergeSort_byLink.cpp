@@ -1,11 +1,15 @@
+
 #include <iostream>
 #include <memory.h>
 #define MAX 10000
+
 using namespace std;
+
 template<class T> int mergeSort(T target[],int b,int e);
 template<class T> int merge_bin(T target[],int p,int q);
 template<class T> void print_list(T a,size_t s);
 
+// 预先定义一个连接数组，也可以动态分配
 int link[MAX];
 int  main(){
  int a []={1,3,5,2,0,4,11,2334,21,122,-223};
@@ -26,7 +30,8 @@ template<class T> int mergeSort(T target[],int b,int e){
   int p = mergeSort(target,mid+1,e);
   return  merge_bin(target,q,p);
 }
-// 输入 p和q是link中的两个位置，分别是两个数组的root
+// 输入 p和q是原来的数组中的两个位置，link[p]和link[q] 分别才开始在link中存放原来数组的下标
+// 分别是两个数组的root
 // 输出是 p和q合并以后的结果
 template<class T> int merge_bin(T target[],int p,int q){
   size_t be = p;
