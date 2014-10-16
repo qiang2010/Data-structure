@@ -13,10 +13,12 @@ int  main(){
 }
 template<class T> void mergeSort(T target[],int b,int e){
   if ( b >= e ) return;
+  // 划分
   int mid = (b+e)/2;
   //cout<<mid<<"  "<<b<<"  "<<e<<endl;
   mergeSort(target,b,mid);
   mergeSort(target,mid+1,e);
+  // 合并
   merge_bin(target,b,mid,mid+1,e);
   // cout<<mid<<endl;
 }
