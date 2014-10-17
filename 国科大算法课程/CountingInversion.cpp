@@ -6,8 +6,32 @@
 #include <iostream>
 
 using namespace std;
+template<class T> int countingInversion(T input[], int b, int e);
+template<class T> int mergeInversion(T input[], int b1, int e1,int b2,int e2);
 
 int main(){
 
 
 }
+template<class T> int countingInversion(T input[], int b, int e){
+  if(b >= e ) return 0;
+  if(b == e+1){
+    if(input[b] > input[e]){
+      T t = input[b];
+      input[b] = input[e];
+      input[e] = t;
+      return 1;
+    }
+    return 0;
+  }
+  int mid = (b+e)/2;
+  int left = countingInversion(input,b,mid);
+  int right = countingInversion(input,mid+1,e);
+  int m = mergeInversion(input,b.mid,mid+1,e);
+  return left+right+m;
+}
+// 这里有两个任务，一个是计算两个子列合并的逆序数，另一个就是合并排序
+template<class T> int mergeInversion(T input[], int b1, int e1,int b2,int e2){
+
+}
+
