@@ -28,7 +28,6 @@ int main(){
    n = 4; //
    memset(men,-1,sizeof(men));
    memset(women,-1,sizeof(women));
-
    while(!unMatchMan.empty()) unMatchMan.pop();
    // 初始所有男士都没有配对
    for(int i = 0;i<n;i++) unMatchMan.push(i);
@@ -53,7 +52,6 @@ int main(){
         }else{
            unMatchMan.push(tempMan); // 比不过人家之前的对象，就只能接着单身了
         }
-
      }
    }
    cout<<"result:"<<endl;
