@@ -4,6 +4,10 @@
  *  QuickSortDividByMode.cpp 使用中位数作为分化元素
 */
 #include <iostream>
+#include <time.h>
+#include <stdlib.h>
+#define BE 1
+#define EN  10000
 
 using namespace std;
 
@@ -11,13 +15,37 @@ template<class T> void QuickSort(T target[],int b,int e);
 template<class T> void swap_(T &a, T&b);
 
 int main(){
+   int jk = 1;
+   int * input;
+   int s = 0;
+   clock_t beginTime,endTime;
+   for(jk = 1;jk <11;jk++){
+     s = jk * 100;
+     input = new int[s];
+     for(size_t i = 0;i< s;i++){
+       input[i] = (rand()%(EN - BE+1))+BE;  // 产生 1 到 10000 之间的随机数
+     }
+     beginTime = clock();
+     QuickSort(input,0,s-1);
+
+    //continue;
+     //cout<<"Result:"<<endl;
+     //for(size_t i=0;i<s;i++)
+     //  cout<<input[i]<<" ";
+     //cout<<endl;
+      endTime  = clock();
+     cout<<s<<": "<<(endTime-beginTime)*1000.0<<endl;
+
+     delete []input; //释放空间
+   }
+
   // int a[] = {8,4,6,21,56,78,12};
-   int a[] = {3,9,3,56,7,5,4};
-   size_t s = 7;
-   QuickSort(a,0,6);
-   cout<<"Result:"<<endl;
-   for(size_t i=0;i<s;i++)
-    cout<<a[i]<<" ";
+  //  int a[] = {3,9,3,56,7,5,4};
+ //  size_t s = 7;
+ //  QuickSort(a,0,6);
+  // cout<<"Result:"<<endl;
+  // for(size_t i=0;i<s;i++)
+   // cout<<a[i]<<" ";
 }
 
 template<class T> void QuickSort(T target[], int b,int e){
@@ -34,7 +62,7 @@ template<class T> void QuickSort(T target[], int b,int e){
       swap_(target[i],target[j]);
     }
   }
-  cout<< i <<" i and j "<< j <<endl;
+  //cout<< i <<" i and j "<< j <<endl;
   // 找到了base的位置，然后分开递归
   swap_(target[i-1],target[b]);
   // 递归
