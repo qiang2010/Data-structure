@@ -7,7 +7,7 @@
 #include <time.h>
 #include <stdlib.h>
 #define BE 1
-#define EN  10000
+#define EN  100000
 
 using namespace std;
 
@@ -20,7 +20,7 @@ int main(){
    int s = 0;
    clock_t beginTime,endTime;
    for(jk = 1;jk <11;jk++){
-     s = jk * 100;
+     s = jk * 1000;
      input = new int[s];
      for(size_t i = 0;i< s;i++){
        input[i] = (rand()%(EN - BE+1))+BE;  // 产生 1 到 10000 之间的随机数

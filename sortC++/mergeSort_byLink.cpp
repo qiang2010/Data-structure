@@ -1,7 +1,11 @@
 
 #include <iostream>
 #include <memory.h>
-#define MAX 10000
+#include <time.h>
+#include <stdlib.h>
+#define BE 1
+#define EN  100000
+#define MAX 100100
 
 using namespace std;
 
@@ -12,15 +16,31 @@ template<class T> void print_list(T a,size_t s);
 // 预先定义一个连接数组，也可以动态分配
 int link[MAX];
 int  main(){
- int a []={1,3,5,2,0,4,11,2334,21,122,-223};
- int s = 11;
+ //int a []={1,3,5,2,0,4,11,2334,21,122,-223};
  // 使用之前先清空link数组
- memset(link,0,sizeof(link));
- int root = mergeSort(a,0,s-1);
- while(root != 0){
-   cout<< a[root]<<" ";
-   root = link[root];
- }
+   memset(link,0,sizeof(link));
+    int jk = 1;
+   int * input;
+   int s = 0;
+   clock_t beginTime,endTime;
+   for(jk = 1;jk <11;jk++){
+        memset(link,0,sizeof(link));
+     s = jk * 1000;
+     input = new int[s];
+     for(size_t i = 0;i< s;i++){
+       input[i] = (rand()%(EN - BE+1))+BE;  // 产生 1 到 10000 之间的随机数
+     }
+     beginTime = clock();
+    int root= mergeSort(input,0,s-1);
+      endTime  = clock();
+     cout<<s<<": "<<(endTime-beginTime)*1000.0<<endl;
+
+// while(root != 0){
+ //  cout<< input[root]<<" ";
+  // root = link[root];
+ //}
+ delete []input; //释放空间
+}
 }
 template<class T> int mergeSort(T target[],int b,int e){
   if ( b >= e ) return e;
