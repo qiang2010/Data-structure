@@ -15,7 +15,7 @@
      k < d，那就在A[b..j-1]之间继续；
      k > d，那就在A[j+1..e] 之间查找第 k -d 个元素
      时间复杂度平均为 O(N)，最坏为O(N^2)
-###  4.平面上最近点对问题 closestPair.cpp 和改进后的 closestPair.cpp  杭电OJ 1007题目
+###  4.平面上最近点对问题 closestPair.cpp 和改进后的 closestPair2.cpp  杭电OJ 1007题目
      方法一： 暴力穷举 时间复杂度为 O(N^2)
      方法二： 分治法时间复杂度为 O(NlogN)
      按照X排序后，用中位数划分所有点，形成两个点集，设划分为points[mid]，分别求解这两个部分的最短距离，记为d1和d2
