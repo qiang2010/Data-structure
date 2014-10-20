@@ -9,24 +9,24 @@
  *   合并采取的是，减少合并时候比较的点对，x0
 */
 
-// 这里为了简化计算，我们统一使用int类型,并限制点的数量不能多于 MAX
 #include <iostream>
+#include <stdio.h>
 #include <cmath>
 #include <stdlib.h>
-#define MAX 1000
+#define MAX 100010
 
 #define MAX_DIS 100000
 // 假设两点间距离最大不超过 MAX_DIS
 using namespace std;
 struct point{
-  int x ;
-  int y ;
+  double x ;
+  double y ;
   point(){
    x = y = 0;
   }
 };
 point points[MAX];
-point points2[MAX];
+//point points2[MAX];
 inline double distance_points(point a,point b){
   return sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
 }
@@ -40,18 +40,25 @@ double closestPair_Conquer(point inputs[],int b1,int e1,int b2,int e2,double min
 
 
 int main(){
-  int n;
-  cin>>n;
-  size_t i = 0;
-  for( i = 0; i<n;i++){
-    cin>>points[i].x;
-    cin>>points[i].y;
-    points2[i].x = points[i].x;
-    points2[i].y = points[i].y;
-  }
-  cout<<"divide and conquer:"<<closestPair_main(points,0,n-1)<<endl;
-  cout<<" contrast"<<closestPair(points,0,n-1)<<endl;
 
+  int n;
+  while(true){
+    scanf("%d",&n);
+    if(n == 0) return 0;
+    size_t i = 0;
+    for( i = 0; i<n;i++){
+      scanf("%lf%lf",&(points[i].x),&(points[i].y));
+      //cout<<points[i].x<<"jjjj"<<endl;
+      //cin>>points[i].x;
+      //cin>>points[i].y;
+      //cin>>;
+      //points2[i].x = points[i].x;
+      //points2[i].y = points[i].y;
+   }
+   printf("%.2f\n",closestPair_main(points,0,n-1)/2);
+  //cout<<"divide and conquer:"<<closestPair_main(points,0,n-1)<<endl;
+ // cout<<" contrast"<<closestPair(points,0,n-1) <<endl;
+  }
 }
 double closestPair_main(point inputs[],int b,int e){
   // 按照 x 排序
@@ -70,6 +77,9 @@ double closestPair_Divide(point inputs[],int b,int e){
   if(min1 > min2) min1 = min2;
   return closestPair_Conquer(inputs,b,mid,mid+1,e,min1);
 }
+//  下面的归并的时候，时间复杂度较高，需要改进,现在的复杂度为 O(N^2)
+//   具体改进为： 增加一个数组，用于存放条带中的点，然后将这些点按照 y 进行排序
+//               然后在扫描一遍就ok，时间复杂度为 O(NlogN), 下面的方法时间复杂度为 O(N^2)
 double closestPair_Conquer(point inputs[],int b1,int mid,int mid1,int e2,double min_current){
   double left = inputs[mid].x-min_current;
   double right = inputs[mid].x+min_current;
