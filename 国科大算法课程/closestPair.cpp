@@ -12,7 +12,7 @@
 // 这里为了简化计算，我们统一使用int类型,并限制点的数量不能多于 MAX
 #include <iostream>
 #include <cmath>
-#include <algorithm>
+#include <stdlib.h>
 #define MAX 1000
 
 #define MAX_DIS 100000
@@ -27,14 +27,11 @@ struct point{
 };
 point points[MAX];
 point points2[MAX];
-inline double distance(point a,point b){
-  return sqrt((a.x-b.x)*(a.x-b.x)+(a.y-a.y)*(a.y-a.y));
+inline double distance_points(point a,point b){
+  return sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
 }
-inline int comX(point a,point b){
-  return a.x < b.x;
-}
-inline int comY(point a,point b){
-  return a.y < b.y ;
+ int comX(const void *a,const void * b){
+  return (*((point*)a)).x < (*((point*)b)).x;
 }
 double closestPair(point inputs[],int b,int e);  // 暴力求解
 double closestPair_main(point inputs[],int b,int e);
@@ -52,13 +49,13 @@ int main(){
     points2[i].x = points[i].x;
     points2[i].y = points[i].y;
   }
-  cout<<"divide and conquer:"<<closestPair_main(inputs,0,n-1)<<endl;
-  cout<<" contrast"<<closestPair(inputs,0,n-1)<<endl;
+  cout<<"divide and conquer:"<<closestPair_main(points,0,n-1)<<endl;
+  cout<<" contrast"<<closestPair(points,0,n-1)<<endl;
 
 }
 double closestPair_main(point inputs[],int b,int e){
   // 按照 x 排序
-  qsort(inputs,);
+  qsort(inputs,b,e,comX);
   // 计算
   return  closestPair_Divide(inputs,b,e);
 }
@@ -66,7 +63,7 @@ double closestPair_main(point inputs[],int b,int e){
 
 double closestPair_Divide(point inputs[],int b,int e){
   if( b == e) return MAX_DIS; // 集合中只有一个点的时候
-  if( b+1 == e) return distance(inputs[b],inputs[e]); // 集合中只有两个点的时候
+  if( b+1 == e) return distance_points(inputs[b],inputs[e]); // 集合中只有两个点的时候
   int mid =(b+e)/2;
   double min1 = closestPair_Divide(inputs,b,mid);
   double min2 = closestPair_Divide(inputs,mid+1,e);
@@ -90,7 +87,7 @@ double closestPair_Conquer(point inputs[],int b1,int mid,int mid1,int e2,double 
       if(inputs[j].y < bottom) continue;
       // 经过上面的判断，走到这一步，表明当前用于和 i 测试的点，是在i的范围里面的，这里面最多有 6 个点
       // 计算距离，更新 min_current
-      tempDis = distance(inputs[i],inputs[j]);
+      tempDis = distance_points(inputs[i],inputs[j]);
       if(tempDis < min_current ){
         min_current = tempDis;
         left = inputs[mid].x  - min_current;
@@ -104,13 +101,13 @@ double closestPair_Conquer(point inputs[],int b1,int mid,int mid1,int e2,double 
 // 暴力求解
 double closestPair(point inputs[],int b,int e){
   if ( b == e) return 0;
-  double min_dis = distance(inputs[b],inputs[b+1]);
+  double min_dis = distance_points(inputs[b],inputs[b+1]);
   double temp = 0;
   size_t i,j;
   //int s = e-b+1;
   for( i =b; i < e ; i++){
     for( j = i+1;j<=e;j++){
-      temp = distance(inputs[i],inputs[j]);
+      temp = distance_points(inputs[i],inputs[j]);
       if(temp < min_dis) min_dis = temp;
     }
   }
