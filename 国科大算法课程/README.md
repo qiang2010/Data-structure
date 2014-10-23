@@ -22,3 +22,6 @@
      那么整个集合的最短距离必然小于d =  min(d1,d2),然后合并。
      合并时候需要注意一些，否则会超时。
      closestPair.cpp 会超时 时间复杂度为 O(N^2) ,改进后的为 O(NlogN)
+###  5.Huffman算法的实现  Huffman.cpp
+     包括根据输入字符以及相应频率构建Huffman树，输出每个字符的Huffman编码，输入一串01，解码Huffman编码
+     N个输入节点，那么Huffman树中有2N-1个节点
