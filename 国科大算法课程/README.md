@@ -25,3 +25,7 @@
 ###  5.Huffman算法的实现  Huffman.cpp
      包括根据输入字符以及相应频率构建Huffman树，输出每个字符的Huffman编码，输入一串01，解码Huffman编码
      N个输入节点，那么Huffman树中有2N-1个节点
+###  6.优先级队列
+     大堆 和 小堆，默认比较方式是 <，如下添加 greater 后，比较方式变成 >，可以自己重载操作符
+     #include<queue> 中 默认的priority_queue<T> 是小堆，如果要使用大堆，必须添加参数：
+     priority_queue<T, vector<int>, greater<T> >
