@@ -29,3 +29,5 @@
      大堆 和 小堆，默认比较方式是 <，如下添加 greater 后，比较方式变成 >，可以自己重载操作符
      #include<queue> 中 默认的priority_queue<T> 是小堆，如果要使用大堆，必须添加参数：
      priority_queue<T, vector<int>, greater<T> >
+###  7.0/1 背包问题 Knapsack.cpp 
+     动态规划算法
